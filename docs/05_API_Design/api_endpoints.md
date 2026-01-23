@@ -35,7 +35,7 @@ https://{cloud-run-domain}/api
 
 
 ### 3-2. 共通ヘッダー
-httpContent-Type: application/json
+
 
 ### 3-3. 共通レスポンス（成功）
 {
@@ -50,7 +50,9 @@ httpContent-Type: application/json
     "message": "Human readable message"
   }
 }
+
 ---
+
 ## 4. お気に入り商品（variant）トグル
 ### 4-1. 概要
 variant単位でお気に入り登録 / 解除を行う。
@@ -71,15 +73,12 @@ wishlist.data.items[] に variant_id が存在するか判定
 存在しない場合：
 
 items に追加
-
 added_at を現在時刻（ISO8601）で設定
 
 存在する場合：
-
 items から削除
 
 wishlist.data.updated_at を更新
-
 Customer メタフィールドを保存
 
 ### 4-5. レスポンス例
@@ -91,7 +90,9 @@ Customer メタフィールドを保存
   "ok": true,
   "action": "removed"
 }
+
 ---
+
 ## 5. お気に入りコレクション（Shopify Collection）トグル
 ### 5-1. 概要
 Shopify Collection を「お気に入りコレクション」として登録 / 解除する。
