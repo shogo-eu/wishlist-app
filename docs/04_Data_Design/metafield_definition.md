@@ -32,8 +32,9 @@
 
 #### データ内容（概要）
 - お気に入りアイテム（variant単位）
-- お気に入りコレクション（ログインユーザー限定）
-- アイテムとコレクションの紐づけ情報
+- お気に入りコレクション（Shopify Collection のお気に入り：favorite_collections）
+- （v1では）アイテム分類は行わない
+
 
 ※ 詳細な構造は `wishlist_schema_customer.json` を正とする。
 
