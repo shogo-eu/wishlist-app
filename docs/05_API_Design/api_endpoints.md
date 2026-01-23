@@ -41,9 +41,9 @@ https://{cloud-run-domain}/api
 Content-Type: application/json
 ```
 補足
-・本APIは JSON形式のリクエストボディのみ を受け付ける
-・POST リクエストでは 必須
-・GET リクエストでは 付与してもよい（推奨）
+- 本APIは JSON形式のリクエストボディのみ を受け付ける
+- POST リクエストでは 必須
+- GET リクエストでは 付与してもよい（推奨）
 
 ```json
 ### 3-3. 共通レスポンス（成功）
@@ -98,11 +98,11 @@ POST /wishlist/item/toggle
 1.wishlist.data.items[] に variant_id が存在するか判定
 
 存在しない場合：
-・items に追加
-・added_at を現在時刻（ISO8601）で設定
+- items に追加
+- added_at を現在時刻（ISO8601）で設定
 
 存在する場合：
-・items から削除
+- items から削除
 2.wishlist.data.updated_at を更新
 3.Customer メタフィールドを保存
 
@@ -150,11 +150,11 @@ POST /wishlist/collection/toggle
 wishlist.data.favorite_collections[] に collection_id が存在するか判定
 
 存在しない場合：
-・favorite_collections に追加
-・added_at を現在時刻（ISO8601）で設定
+- favorite_collections に追加
+- added_at を現在時刻（ISO8601）で設定
 
 存在する場合：
-・favorite_collections から削除
+- favorite_collections から削除
 2.wishlist.data.updated_at を更新
 3.Customer メタフィールドを保存
 
@@ -222,17 +222,17 @@ GET /wishlist
 ---
 
 ## 8. 非対応（v1）
-・バルク更新（複数itemsの一括操作）
-・お気に入り履歴の取得
-・共有履歴・回数の保存
-・管理画面向けAPI
+- バルク更新（複数itemsの一括操作）
+- お気に入り履歴の取得
+- 共有履歴・回数の保存
+- 管理画面向けAPI
 
 ---
 
 ## 9. 関連ドキュメント
-・02_Requirements/functional_requirements.md
-・04_Data_Design/wishlist_schema_customer.json
-・04_Data_Design/wishlist_schema_guest.json
-・04_Data_Design/data_migration_policy.md
-・03_UX_UI/screen_spec_pdp.md
-・03_UX_UI/screen_spec_wishlist.md
+- 02_Requirements/functional_requirements.md
+- 04_Data_Design/wishlist_schema_customer.json
+- 04_Data_Design/wishlist_schema_guest.json
+- 04_Data_Design/data_migration_policy.md
+- 03_UX_UI/screen_spec_pdp.md
+- 03_UX_UI/screen_spec_wishlist.md
