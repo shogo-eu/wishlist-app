@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "updated_at": "ISO8601",
+  "collections": [
+    {
+      "id": "c_ab12cd34",
+      "name": "普段用",
+      "sort": 10,
+      "created_at": "ISO8601",
+      "updated_at": "ISO8601"
+    }
+  ],
+  "items": [
+    {
+      "variant_id": 1234567890,
+      "product_id": 7777777777,
+      "added_at": "ISO8601",
+      "collection_ids": ["c_ab12cd34"]
+    }
+  ]
+}
