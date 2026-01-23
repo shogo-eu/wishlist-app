@@ -50,6 +50,7 @@ httpContent-Type: application/json
     "message": "Human readable message"
   }
 }
+---
 ## 4. お気に入り商品（variant）トグル
 ### 4-1. 概要
 variant単位でお気に入り登録 / 解除を行う。
@@ -90,6 +91,7 @@ Customer メタフィールドを保存
   "ok": true,
   "action": "removed"
 }
+---
 ## 5. お気に入りコレクション（Shopify Collection）トグル
 ### 5-1. 概要
 Shopify Collection を「お気に入りコレクション」として登録 / 解除する。
@@ -130,6 +132,7 @@ Customer メタフィールドを保存
   "ok": true,
   "action": "removed"
 }
+---
 ## 6. Wishlist データ取得
 ### 6-1. 概要
 ログインユーザーの Wishlist データを取得する。
@@ -146,6 +149,7 @@ GET /wishlist
     "items": []
   }
 }
+---
 ## 7. エラーハンドリング
 ### 7-1. 認証エラー
 {
@@ -163,6 +167,7 @@ GET /wishlist
     "message": "variant_id is required"
   }
 }
+---
 ## 8. 非対応（v1）
 バルク更新（複数itemsの一括操作）
 
