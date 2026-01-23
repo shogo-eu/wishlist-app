@@ -179,11 +179,12 @@ wishlist.data.favorite_collections[] に collection_id が存在するか判定
 ログインユーザーの Wishlist データを取得する。
 
 ### 6-2. エンドポイント
----http
+```http
 GET /wishlist
----
+```
+
 ### 6-3. レスポンス
----http
+```http
 {
   "ok": true,
   "data": {
@@ -193,13 +194,13 @@ GET /wishlist
     "items": []
   }
 }
----
+```
 
 ---
 
 ## 7. エラーハンドリング
 ### 7-1. 認証エラー
----json
+```json
 {
   "ok": false,
   "error": {
@@ -207,9 +208,9 @@ GET /wishlist
     "message": "Authentication required"
   }
 }
----
+```
 ### 7-2. バリデーションエラー
----json
+```json
 {
   "ok": false,
   "error": {
@@ -217,7 +218,7 @@ GET /wishlist
     "message": "variant_id is required"
   }
 }
----
+```
 ---
 
 ## 8. 非対応（v1）
