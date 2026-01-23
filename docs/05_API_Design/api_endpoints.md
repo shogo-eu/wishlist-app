@@ -35,7 +35,11 @@ https://{cloud-run-domain}/api
 
 
 ### 3-2. 共通ヘッダー
+本APIにリクエストする際は、以下の HTTP ヘッダーを必須とする。
 
+```http
+Content-Type: application/json
+```
 
 ### 3-3. 共通レスポンス（成功）
 {
