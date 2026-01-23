@@ -40,13 +40,20 @@ https://{cloud-run-domain}/api
 ```http
 Content-Type: application/json
 ```
+補足
+・本APIは JSON形式のリクエストボディのみ を受け付ける
+・POST リクエストでは 必須
+・GET リクエストでは 付与してもよい（推奨）
 
+```json
 ### 3-3. 共通レスポンス（成功）
 {
   "ok": true
 }
-
+```
 ### 3-4. 共通レスポンス（失敗）
+すべてのAPIは失敗時、以下の形式でレスポンスを返す。
+```json
 {
   "ok": false,
   "error": {
@@ -54,6 +61,16 @@ Content-Type: application/json
     "message": "Human readable message"
   }
 }
+```
+♯♯♯　エラーコード例
+
+| code              | 説明            |
+| ----------------- | ------------- |
+| `UNAUTHORIZED`    | 認証が必要 / 認証に失敗 |
+| `INVALID_REQUEST` | パラメータ不正       |
+| `NOT_FOUND`       | 対象が存在しない      |
+| `INTERNAL_ERROR`  | サーバー内部エラー     |
+
 
 ---
 
@@ -63,29 +80,34 @@ variant単位でお気に入り登録 / 解除を行う。
 
 ### 4-2. エンドポイント
 POST /wishlist/item/toggle
+
 ### 4-3. リクエスト
+```http
 {
   "variant_id": 1234567890,
   "product_id": 7777777777
 }
-項目	必須	説明
-variant_id	◯	お気に入り対象のvariant ID
-product_id	△	表示補助用（取得可能な場合は必須）
+```
+| 項目         | 必須 | 説明                  |
+| ---------- | -- | ------------------- |
+| variant_id | ◯  | お気に入り対象の Variant ID |
+| product_id | △  | 表示補助用（取得可能な場合）      |
+
+
 ### 4-4. 処理内容
-wishlist.data.items[] に variant_id が存在するか判定
+1.wishlist.data.items[] に variant_id が存在するか判定
 
 存在しない場合：
-
-items に追加
-added_at を現在時刻（ISO8601）で設定
+・items に追加
+・added_at を現在時刻（ISO8601）で設定
 
 存在する場合：
-items から削除
-
-wishlist.data.updated_at を更新
-Customer メタフィールドを保存
+・items から削除
+2.wishlist.data.updated_at を更新
+3.Customer メタフィールドを保存
 
 ### 4-5. レスポンス例
+```json
 {
   "ok": true,
   "action": "added"
@@ -94,7 +116,13 @@ Customer メタフィールドを保存
   "ok": true,
   "action": "removed"
 }
-
+```
+```json
+{
+  "ok": true,
+  "action": "removed"
+}
+```
 ---
 
 ## 5. お気に入りコレクション（Shopify Collection）トグル
@@ -102,41 +130,47 @@ Customer メタフィールドを保存
 Shopify Collection を「お気に入りコレクション」として登録 / 解除する。
 
 ### 5-2. エンドポイント
+```http
 POST /wishlist/collection/toggle
+```
 ### 5-3. リクエスト
+```json
 {
   "collection_id": 1111111111,
   "handle": "training-wear"
 }
-項目	必須	説明
-collection_id	◯	Shopify Collection の数値ID
-handle	△	コレクションハンドル（取得可能な場合）
+```
+
+| 項目            | 必須 | 説明                       |
+| ------------- | -- | ------------------------ |
+| collection_id | ◯  | Shopify Collection の数値ID |
+| handle        | △  | コレクションハンドル（取得可能な場合）      |
+
 ### 5-4. 処理内容
 wishlist.data.favorite_collections[] に collection_id が存在するか判定
 
 存在しない場合：
-
-favorite_collections に追加
-
-added_at を現在時刻（ISO8601）で設定
+・favorite_collections に追加
+・added_at を現在時刻（ISO8601）で設定
 
 存在する場合：
-
-favorite_collections から削除
-
-wishlist.data.updated_at を更新
-
-Customer メタフィールドを保存
+・favorite_collections から削除
+2.wishlist.data.updated_at を更新
+3.Customer メタフィールドを保存
 
 ### 5-5. レスポンス例
+```json
 {
   "ok": true,
   "action": "added"
 }
+```
+```json
 {
   "ok": true,
   "action": "removed"
 }
+```
 
 ---
 
@@ -145,8 +179,11 @@ Customer メタフィールドを保存
 ログインユーザーの Wishlist データを取得する。
 
 ### 6-2. エンドポイント
+---http
 GET /wishlist
+---
 ### 6-3. レスポンス
+---http
 {
   "ok": true,
   "data": {
@@ -156,11 +193,13 @@ GET /wishlist
     "items": []
   }
 }
+---
 
 ---
 
 ## 7. エラーハンドリング
 ### 7-1. 認証エラー
+---json
 {
   "ok": false,
   "error": {
@@ -168,7 +207,9 @@ GET /wishlist
     "message": "Authentication required"
   }
 }
+---
 ### 7-2. バリデーションエラー
+---json
 {
   "ok": false,
   "error": {
@@ -176,29 +217,21 @@ GET /wishlist
     "message": "variant_id is required"
   }
 }
-
+---
 ---
 
 ## 8. 非対応（v1）
-バルク更新（複数itemsの一括操作）
-
-お気に入り履歴の取得
-
-共有履歴・回数の保存
-
-管理画面向けAPI
+・バルク更新（複数itemsの一括操作）
+・お気に入り履歴の取得
+・共有履歴・回数の保存
+・管理画面向けAPI
 
 ---
 
 ## 9. 関連ドキュメント
-02_Requirements/functional_requirements.md
-
-04_Data_Design/wishlist_schema_customer.json
-
-04_Data_Design/wishlist_schema_guest.json
-
-04_Data_Design/data_migration_policy.md
-
-03_UX_UI/screen_spec_pdp.md
-
-03_UX_UI/screen_spec_wishlist.md
+・02_Requirements/functional_requirements.md
+・04_Data_Design/wishlist_schema_customer.json
+・04_Data_Design/wishlist_schema_guest.json
+・04_Data_Design/data_migration_policy.md
+・03_UX_UI/screen_spec_pdp.md
+・03_UX_UI/screen_spec_wishlist.md
