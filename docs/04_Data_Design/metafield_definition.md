@@ -3,8 +3,12 @@
 本ドキュメントでは、Wishlist App v1 において使用する  
 **Shopify メタフィールドの定義一覧**をまとめる。
 
-実装・運用・拡張における **正の定義（Single Source of Truth）** は  
-本ドキュメントとする。
+本ドキュメントは、  
+**「どのデータを、どのメタフィールドに保存するか」** に関する  
+正の定義（Single Source of Truth）とする。
+
+※ 各メタフィールドに保存される **JSON構造の正** は  
+`wishlist_schema_customer.json` / `wishlist_schema_guest.json` を正とする。
 
 ---
 
@@ -32,11 +36,12 @@
 
 #### データ内容（概要）
 - お気に入りアイテム（variant単位）
-- お気に入りコレクション（Shopify Collection のお気に入り：favorite_collections）
+- お気に入りコレクション  
+  （Shopify Collection のお気に入り：`favorite_collections`）
 - （v1では）アイテム分類は行わない
 
-
-※ 詳細な構造は `wishlist_schema_customer.json` を正とする。
+※ 詳細なJSON構造は  
+`04_Data_Design/wishlist_schema_customer.json` を正とする。
 
 #### 運用上の注意
 - Shopify Admin 画面から内容確認は可能
