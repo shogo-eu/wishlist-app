@@ -133,7 +133,9 @@ Customer メタフィールドを保存
   "ok": true,
   "action": "removed"
 }
+
 ---
+
 ## 6. Wishlist データ取得
 ### 6-1. 概要
 ログインユーザーの Wishlist データを取得する。
@@ -150,7 +152,9 @@ GET /wishlist
     "items": []
   }
 }
+
 ---
+
 ## 7. エラーハンドリング
 ### 7-1. 認証エラー
 {
@@ -168,7 +172,9 @@ GET /wishlist
     "message": "variant_id is required"
   }
 }
+
 ---
+
 ## 8. 非対応（v1）
 バルク更新（複数itemsの一括操作）
 
@@ -177,6 +183,8 @@ GET /wishlist
 共有履歴・回数の保存
 
 管理画面向けAPI
+
+---
 
 ## 9. 関連ドキュメント
 02_Requirements/functional_requirements.md
