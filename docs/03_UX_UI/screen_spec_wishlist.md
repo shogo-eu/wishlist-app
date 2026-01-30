@@ -36,22 +36,6 @@
 
 ---
 
-## 5. コレクション一覧セクション（別画面/別セクションでの登録）
-
-### 5-1. UI要件
-- コレクション一覧（バナー群）に♡ボタンを付与する
-- ♡はトグル（登録/解除）で動作する
-
-### 5-2. 利用条件
-- ログインユーザーのみ登録/解除可能
-- ゲストは♡を非表示、またはクリック時にログイン誘導を表示する
-
-### 5-3. 保存
-- 保存先：Customer metafield `wishlist.data.favorite_collections`
-- 保存単位：`collection_id`（推奨）＋可能なら `handle` を併記
-
----
-
 ## 6. 共有機能（商品：条件付き）
 - 商品共有は `product.metafields.custom.share_enabled == true` の場合のみ表示
 - 共有URLは商品詳細URL + `?variant=...`
