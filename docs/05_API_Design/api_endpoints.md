@@ -123,74 +123,22 @@ POST /wishlist/item/toggle
   "action": "removed"
 }
 ```
----
-
-## 5. お気に入りコレクション（Shopify Collection）トグル
+## 5. Wishlist データ取得
 ### 5-1. 概要
-Shopify Collection を「お気に入りコレクション」として登録 / 解除する。
-
-### 5-2. エンドポイント
-```http
-POST /wishlist/collection/toggle
-```
-### 5-3. リクエスト
-```json
-{
-  "collection_id": 1111111111,
-  "handle": "training-wear"
-}
-```
-
-| 項目            | 必須 | 説明                       |
-| ------------- | -- | ------------------------ |
-| collection_id | ◯  | Shopify Collection の数値ID |
-| handle        | △  | コレクションハンドル（取得可能な場合）      |
-
-### 5-4. 処理内容
-wishlist.data.favorite_collections[] に collection_id が存在するか判定
-
-存在しない場合：
-- favorite_collections に追加
-- added_at を現在時刻（ISO8601）で設定
-
-存在する場合：
-- favorite_collections から削除
-2.wishlist.data.updated_at を更新
-3.Customer メタフィールドを保存
-
-### 5-5. レスポンス例
-```json
-{
-  "ok": true,
-  "action": "added"
-}
-```
-```json
-{
-  "ok": true,
-  "action": "removed"
-}
-```
-
----
-
-## 6. Wishlist データ取得
-### 6-1. 概要
 ログインユーザーの Wishlist データを取得する。
 
-### 6-2. エンドポイント
+### 5-2. エンドポイント
 ```http
 GET /wishlist
 ```
 
-### 6-3. レスポンス
+### 5-3. レスポンス
 ```http
 {
   "ok": true,
   "data": {
     "version": 1,
     "updated_at": "2026-01-24T10:30:00+09:00",
-    "favorite_collections": [],
     "items": []
   }
 }
@@ -198,8 +146,8 @@ GET /wishlist
 
 ---
 
-## 7. エラーハンドリング
-### 7-1. 認証エラー
+## 6. エラーハンドリング
+### 6-1. 認証エラー
 ```json
 {
   "ok": false,
@@ -209,7 +157,7 @@ GET /wishlist
   }
 }
 ```
-### 7-2. バリデーションエラー
+### 6-2. バリデーションエラー
 ```json
 {
   "ok": false,
@@ -221,7 +169,7 @@ GET /wishlist
 ```
 ---
 
-## 8. 非対応（v1）
+## 7. 非対応（v1）
 - バルク更新（複数itemsの一括操作）
 - お気に入り履歴の取得
 - 共有履歴・回数の保存
@@ -229,7 +177,7 @@ GET /wishlist
 
 ---
 
-## 9. 関連ドキュメント
+## 8. 関連ドキュメント
 - 02_Requirements/functional_requirements.md
 - 04_Data_Design/wishlist_schema_customer.json
 - 04_Data_Design/wishlist_schema_guest.json
